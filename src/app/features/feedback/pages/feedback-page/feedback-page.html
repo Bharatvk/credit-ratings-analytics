@@ -1,0 +1,104 @@
+<section class="feedback-page">
+  <div class="sticky-header">
+    <p-breadcrumb [model]="breadcrumbItems" [home]="homeCrumb" />
+    <div class="action-row">
+      <button
+        pButton
+        type="button"
+        class="back-button"
+        icon="pi pi-arrow-left"
+        label="Back to Issuer"
+        severity="secondary"
+        (click)="goToIssuerDetail()"
+        [disabled]="!issuerId || isSubmitting"
+      ></button>
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <app-loading-state label="Loading issuer feedback context..." />
+  } @else if (errorMessage) {
+    <app-error-state [message]="errorMessage" (retry)="retryLoad()" />
+  } @else if (detailData) {
+    <div class="feedback-content" [attr.aria-busy]="isSubmitting">
+    <header>
+      <h1 #stepHeading tabindex="-1">Provide Feedback</h1>
+      <p>Reviewing {{ detailData.issuer.name }} ({{ detailData.issuer.rating }})</p>
+      <p class="step-indicator">Step {{ activeStep + 1 }} of 4</p>
+      <p class="step-name">{{ currentStepLabel }}</p>
+    </header>
+
+      <p-steps
+        [model]="stepItems"
+        [activeIndex]="activeStep"
+        [styleClass]="stepperClass"
+        [readonly]="false"
+        (activeIndexChange)="onStepChange($event)"
+      />
+
+      @switch (activeStep) {
+        @case (0) {
+          <app-feedback-step-user [group]="userGroup" [roleOptions]="roleOptions" />
+        }
+        @case (1) {
+          <app-feedback-step-ratings [group]="ratingsGroup" />
+        }
+        @case (2) {
+          <app-feedback-step-details [group]="feedbackGroup" [drivers]="detailData.drivers" />
+        }
+        @default {
+          @if (draftPayload; as payload) {
+            <app-feedback-review
+              [payload]="payload"
+              [issuer]="detailData.issuer"
+              [agreedDriverTitles]="agreedDriverTitles"
+              [disagreedDriverTitles]="disagreedDriverTitles"
+            />
+          }
+        }
+      }
+
+      <footer class="actions">
+        <button
+          pButton
+          type="button"
+          label="Previous"
+          severity="secondary"
+          icon="pi pi-arrow-left"
+          (click)="previousStep()"
+          [disabled]="activeStep === 0 || isSubmitting"
+        ></button>
+
+        @if (activeStep < 3) {
+          <button
+            pButton
+            type="button"
+            label="Next"
+            iconPos="right"
+            icon="pi pi-arrow-right"
+            (click)="nextStep()"
+            [disabled]="currentStepInvalid() || isSubmitting"
+          ></button>
+        } @else {
+          <button
+            pButton
+            type="button"
+            label="Submit Feedback"
+            icon="pi pi-check"
+            (click)="submit()"
+            [disabled]="feedbackForm.invalid || isSubmitting"
+          ></button>
+        }
+      </footer>
+
+      @if (isSubmitting) {
+        <div class="submit-overlay" aria-live="polite">
+          <div class="submit-progress">
+            <p-progressSpinner strokeWidth="4" />
+            <span>Submitting feedback...</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

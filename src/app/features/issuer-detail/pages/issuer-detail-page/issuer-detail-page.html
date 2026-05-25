@@ -1,0 +1,37 @@
+<section class="detail-page">
+  <div class="sticky-header">
+    <p-breadcrumb [model]="breadcrumbItems" [home]="homeCrumb" />
+    <div class="action-row">
+      <button
+        class="back-button"
+        pButton
+        type="button"
+        icon="pi pi-arrow-left"
+        label="Back to Dashboard"
+        severity="secondary"
+        (click)="goBack()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-comment"
+        label="Provide Feedback"
+        (click)="openFeedback()"
+        [disabled]="!data"
+      ></button>
+    </div>
+  </div>
+
+  @if (loading) {
+    <app-loading-state label="Loading issuer details..." />
+  } @else if (errorMessage) {
+    <app-error-state [message]="errorMessage" (retry)="retry()" />
+  } @else if (data) {
+    <section class="detail-content">
+      <app-issuer-overview [issuer]="data.issuer" />
+      <app-rating-history [history]="data.history" />
+      <app-key-drivers [drivers]="data.drivers" />
+      <app-ai-insight [insight]="data.aiInsight" />
+    </section>
+  }
+</section>

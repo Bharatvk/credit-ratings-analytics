@@ -1,0 +1,12 @@
+.state-container {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  min-height: 14rem;
+  text-align: center;
+}
+
+p {
+  margin: 0;
+  color: var(--text-muted);
+}

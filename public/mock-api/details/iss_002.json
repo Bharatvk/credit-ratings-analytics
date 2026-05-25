@@ -1,0 +1,62 @@
+{
+  "issuer": {
+    "id": "iss_002",
+    "name": "Tesla Inc.",
+    "industry": "Automotive",
+    "rating": "Baa2",
+    "outlook": "Positive",
+    "lastUpdated": "2026-02-10",
+    "country": "USA"
+  },
+  "history": [
+    {
+      "date": "2024-02-09",
+      "rating": "Baa3",
+      "action": "Upgrade",
+      "rationale": "Operational execution improved margin predictability."
+    },
+    {
+      "date": "2025-02-11",
+      "rating": "Baa2",
+      "action": "Upgrade",
+      "rationale": "Leverage metrics improved with better free cash flow conversion."
+    },
+    {
+      "date": "2026-02-10",
+      "rating": "Baa2",
+      "action": "Affirmed",
+      "rationale": "Scale advantages offset ongoing pricing pressure."
+    }
+  ],
+  "drivers": [
+    {
+      "id": "drv_11",
+      "category": "Operational",
+      "title": "Manufacturing Scale Expansion",
+      "impact": "Positive",
+      "score": 7.9,
+      "description": "Capacity additions continue to support production efficiency gains."
+    },
+    {
+      "id": "drv_12",
+      "category": "Market",
+      "title": "High Industry Price Competition",
+      "impact": "Negative",
+      "score": 5.8,
+      "description": "Discounting dynamics pressure near-term operating margins."
+    },
+    {
+      "id": "drv_13",
+      "category": "Financial",
+      "title": "Moderating Debt Burden",
+      "impact": "Positive",
+      "score": 7.2,
+      "description": "Net debt trajectory has improved against prior review periods."
+    }
+  ],
+  "aiInsight": {
+    "summary": "Execution remains strong, with scale efficiencies supporting credit quality. Margin volatility persists in a competitive environment, but the outlook is supported by improving leverage trends.",
+    "confidence": 84,
+    "generatedAt": "2026-02-10T09:45:00Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "issuer": {
+    "id": "iss_004",
+    "name": "Toyota Motor Corp.",
+    "industry": "Automotive",
+    "rating": "A1",
+    "outlook": "Stable",
+    "lastUpdated": "2026-01-31",
+    "country": "Japan"
+  },
+  "history": [
+    {
+      "date": "2024-01-30",
+      "rating": "A2",
+      "action": "Upgrade",
+      "rationale": "Resilient global demand and conservative funding profile."
+    },
+    {
+      "date": "2025-01-30",
+      "rating": "A1",
+      "action": "Upgrade",
+      "rationale": "Sustained balance-sheet improvement and cost discipline."
+    },
+    {
+      "date": "2026-01-31",
+      "rating": "A1",
+      "action": "Affirmed",
+      "rationale": "Strong operating cash generation supports stability."
+    }
+  ],
+  "drivers": [
+    {
+      "id": "drv_31",
+      "category": "Operational",
+      "title": "Global Manufacturing Efficiency",
+      "impact": "Positive",
+      "score": 8.4,
+      "description": "Scale and process maturity continue to support margin resiliency."
+    },
+    {
+      "id": "drv_32",
+      "category": "Market",
+      "title": "Transition to EV Product Mix",
+      "impact": "Neutral",
+      "score": 6.5,
+      "description": "Transition execution risk is present but currently manageable."
+    },
+    {
+      "id": "drv_33",
+      "category": "Financial",
+      "title": "Strong Liquidity Position",
+      "impact": "Positive",
+      "score": 8.0,
+      "description": "Liquidity coverage remains strong relative to short-term maturities."
+    }
+  ],
+  "aiInsight": {
+    "summary": "The issuer's credit strength is anchored in scale, liquidity, and efficient operations. Strategic EV transition execution remains an area of monitoring rather than immediate pressure.",
+    "confidence": 88,
+    "generatedAt": "2026-01-31T16:20:00Z"
+  }
+}

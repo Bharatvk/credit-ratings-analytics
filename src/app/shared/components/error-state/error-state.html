@@ -1,0 +1,11 @@
+<section class="error-wrapper" aria-live="assertive">
+  <p-message severity="error" [text]="message" />
+  <button
+    pButton
+    type="button"
+    class="retry-button"
+    [label]="retryLabel"
+    icon="pi pi-refresh"
+    (click)="retry.emit()"
+  ></button>
+</section>

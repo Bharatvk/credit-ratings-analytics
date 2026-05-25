@@ -1,0 +1,62 @@
+{
+  "issuer": {
+    "id": "iss_001",
+    "name": "Apple Inc.",
+    "industry": "Technology",
+    "rating": "Aa1",
+    "outlook": "Stable",
+    "lastUpdated": "2026-02-15",
+    "country": "USA"
+  },
+  "history": [
+    {
+      "date": "2024-02-14",
+      "rating": "Aa2",
+      "action": "Upgrade",
+      "rationale": "Sustained profitability and stronger liquidity profile."
+    },
+    {
+      "date": "2025-02-13",
+      "rating": "Aa1",
+      "action": "Upgrade",
+      "rationale": "Continued resilience across macroeconomic cycles."
+    },
+    {
+      "date": "2026-02-15",
+      "rating": "Aa1",
+      "action": "Affirmed",
+      "rationale": "Balance sheet strength remains best-in-class."
+    }
+  ],
+  "drivers": [
+    {
+      "id": "drv_1",
+      "category": "Financial",
+      "title": "Strong Cash Flow Generation",
+      "impact": "Positive",
+      "score": 9.1,
+      "description": "Consistent operating cash flow supports capital flexibility."
+    },
+    {
+      "id": "drv_2",
+      "category": "Market",
+      "title": "Premium Product Concentration",
+      "impact": "Neutral",
+      "score": 6.4,
+      "description": "High-end product mix improves margins but can compress demand in downturns."
+    },
+    {
+      "id": "drv_3",
+      "category": "Governance",
+      "title": "Disciplined Capital Allocation",
+      "impact": "Positive",
+      "score": 8.7,
+      "description": "Steady execution in buyback/dividend strategy with prudent leverage."
+    }
+  ],
+  "aiInsight": {
+    "summary": "The issuer demonstrates durable earnings quality and substantial liquidity headroom. While market competition remains active, the current financial buffer supports rating stability.",
+    "confidence": 91,
+    "generatedAt": "2026-02-15T10:30:00Z"
+  }
+}

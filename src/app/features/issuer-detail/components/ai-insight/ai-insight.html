@@ -1,0 +1,15 @@
+<p-card>
+  <h2 class="section-heading">AI-Generated Insights</h2>
+  <p>{{ insight.summary }}</p>
+  <div class="metrics">
+    <div>
+      <span class="label">Confidence</span>
+      <strong>{{ insight.confidence }}%</strong>
+      <p-progressBar [value]="insight.confidence" [showValue]="false" />
+    </div>
+    <div>
+      <span class="label">Generated At</span>
+      <strong>{{ insight.generatedAt | date: 'MM/dd/yyyy, h:mm a' }}</strong>
+    </div>
+  </div>
+</p-card>

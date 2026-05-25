@@ -1,0 +1,30 @@
+<p-card>
+  <h2 class="section-heading">Issuer Overview</h2>
+  <header class="issuer-header">
+    <h3>{{ issuer.name }}</h3>
+    <p class="issuer-meta">{{ issuer.industry }} · {{ issuer.country }}</p>
+  </header>
+
+  <div class="overview-grid">
+    <section class="metric rating-metric">
+      <span class="label">Current Rating</span>
+      <div class="rating-chip" aria-label="Current rating {{ issuer.rating }}">
+        <span class="rating-value">{{ issuer.rating }}</span>
+      </div>
+      <span class="rating-caption">Investment-grade rating tier</span>
+    </section>
+
+    <section class="metric">
+      <span class="label">Outlook</span>
+      <span class="outlook" [ngClass]="outlookClass(issuer.outlook)">
+        <i class="pi" [ngClass]="outlookIconClass(issuer.outlook)" aria-hidden="true"></i>
+        <strong>{{ issuer.outlook }}</strong>
+      </span>
+    </section>
+
+    <section class="metric">
+      <span class="label">Last Updated</span>
+      <strong>{{ issuer.lastUpdated | date: 'MM/dd/yyyy' }}</strong>
+    </section>
+  </div>
+</p-card>

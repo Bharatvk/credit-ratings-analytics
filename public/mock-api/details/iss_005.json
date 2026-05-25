@@ -1,0 +1,62 @@
+{
+  "issuer": {
+    "id": "iss_005",
+    "name": "Siemens AG",
+    "industry": "Industrial Manufacturing",
+    "rating": "A2",
+    "outlook": "Positive",
+    "lastUpdated": "2026-02-18",
+    "country": "Germany"
+  },
+  "history": [
+    {
+      "date": "2024-02-17",
+      "rating": "A3",
+      "action": "Upgrade",
+      "rationale": "Improved profitability in core segments."
+    },
+    {
+      "date": "2025-02-16",
+      "rating": "A2",
+      "action": "Upgrade",
+      "rationale": "Lower leverage and stable industrial demand."
+    },
+    {
+      "date": "2026-02-18",
+      "rating": "A2",
+      "action": "Affirmed",
+      "rationale": "Order backlog quality remains favorable."
+    }
+  ],
+  "drivers": [
+    {
+      "id": "drv_41",
+      "category": "Financial",
+      "title": "Moderate Leverage Trend",
+      "impact": "Positive",
+      "score": 7.6,
+      "description": "Leverage profile improved through margin expansion and disciplined capex."
+    },
+    {
+      "id": "drv_42",
+      "category": "Operational",
+      "title": "Diversified Industrial Portfolio",
+      "impact": "Positive",
+      "score": 7.8,
+      "description": "Diversification reduces concentration risk across cyclical segments."
+    },
+    {
+      "id": "drv_43",
+      "category": "Market",
+      "title": "Exposure to Europe Slowdown",
+      "impact": "Negative",
+      "score": 5.9,
+      "description": "Macro headwinds in key markets may pressure demand in selected verticals."
+    }
+  ],
+  "aiInsight": {
+    "summary": "Credit quality benefits from portfolio diversification and improving leverage metrics. Upside remains tied to sustained margin discipline despite regional macro uncertainty.",
+    "confidence": 86,
+    "generatedAt": "2026-02-18T07:50:00Z"
+  }
+}

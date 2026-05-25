@@ -1,0 +1,64 @@
+<p-card>
+  <ng-template pTemplate="title">Step 4: Review and Submit</ng-template>
+
+  <section class="summary-section">
+    <h3>Issuer</h3>
+    <p><strong>{{ issuer.name }}</strong> ({{ issuer.rating }})</p>
+  </section>
+
+  <section class="summary-section">
+    <h3>User</h3>
+    <div class="inline-row">
+      <span class="inline-label">Name:</span>
+      <p>{{ payload.user.name }}</p>
+    </div>
+    <div class="inline-row">
+      <span class="inline-label">Email:</span>
+      <p>{{ payload.user.email }}</p>
+    </div>
+    <div class="inline-row">
+      <span class="inline-label">Role:</span>
+      <p>{{ payload.user.role }}</p>
+    </div>
+    <div class="inline-row">
+      <span class="inline-label">Organization:</span>
+      <p>{{ payload.user.organization || 'N/A' }}</p>
+    </div>
+  </section>
+
+  <section class="summary-section">
+    <h3>Ratings</h3>
+    <div class="ratings-grid">
+      <p><span class="label">Accuracy</span><strong>{{ payload.ratings.accuracy }}/5</strong></p>
+      <p><span class="label">Driver Relevance</span><strong>{{ payload.ratings.driverRelevance }}/5</strong></p>
+      <p><span class="label">AI Insight Quality</span><strong>{{ payload.ratings.aiInsightQuality }}/5</strong></p>
+      <p><span class="label">Timeliness</span><strong>{{ payload.ratings.timeliness }}/5</strong></p>
+    </div>
+  </section>
+
+  <p-divider />
+
+  <section class="summary-section details-section">
+    <h3>Detailed Feedback</h3>
+
+    <div class="detail-item">
+      <span class="label">Agreed drivers</span>
+      <p>{{ agreedDriverTitles.length ? agreedDriverTitles.join(', ') : 'None selected' }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="label">Disagreed drivers</span>
+      <p>{{ disagreedDriverTitles.length ? disagreedDriverTitles.join(', ') : 'None selected' }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="label">Additional factors to consider</span>
+      <p class="text-box">{{ payload.feedback.additionalFactors || 'N/A' }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="label">General Comments</span>
+      <p class="text-box">{{ payload.feedback.comments || 'N/A' }}</p>
+    </div>
+  </section>
+</p-card>

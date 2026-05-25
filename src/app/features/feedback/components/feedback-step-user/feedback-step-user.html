@@ -1,0 +1,32 @@
+<p-card>
+  <ng-template pTemplate="title">Step 1: User Information</ng-template>
+  <p class="required-note"><span class="required-asterisk" aria-hidden="true">*</span> Required fields</p>
+  <form [formGroup]="group" class="form-grid">
+    <label for="name" appRequiredAsterisk>Name</label>
+    <input id="name" pInputText formControlName="name" type="text" />
+    @if (hasError('name')) {
+      <p-message severity="error" text="Name is required (minimum 2 characters)." />
+    }
+
+    <label for="email" appRequiredAsterisk>Email</label>
+    <input id="email" pInputText formControlName="email" type="email" />
+    @if (hasError('email')) {
+      <p-message severity="error" text="Enter a valid email address." />
+    }
+
+    <label for="role" appRequiredAsterisk>Role</label>
+    <p-select
+      inputId="role"
+      formControlName="role"
+      [options]="roleOptions"
+      placeholder="Select role"
+      appendTo="body"
+    />
+    @if (hasError('role')) {
+      <p-message severity="error" text="Role is required." />
+    }
+
+    <label for="organization">Organization</label>
+    <input id="organization" pInputText formControlName="organization" type="text" />
+  </form>
+</p-card>

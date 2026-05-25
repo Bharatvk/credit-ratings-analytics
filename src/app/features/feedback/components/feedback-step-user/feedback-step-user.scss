@@ -1,0 +1,14 @@
+.form-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.required-note {
+  margin: 0 0 0.5rem;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+label {
+  font-weight: 600;
+}

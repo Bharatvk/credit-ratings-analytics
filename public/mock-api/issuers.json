@@ -1,0 +1,47 @@
+[
+  {
+    "id": "iss_001",
+    "name": "Apple Inc.",
+    "industry": "Technology",
+    "rating": "Aa1",
+    "outlook": "Stable",
+    "lastUpdated": "2026-02-15",
+    "country": "USA"
+  },
+  {
+    "id": "iss_002",
+    "name": "Tesla Inc.",
+    "industry": "Automotive",
+    "rating": "Baa2",
+    "outlook": "Positive",
+    "lastUpdated": "2026-02-10",
+    "country": "USA"
+  },
+  {
+    "id": "iss_003",
+    "name": "Deutsche Bank AG",
+    "industry": "Financial Services",
+    "rating": "A3",
+    "outlook": "Negative",
+    "lastUpdated": "2026-02-20",
+    "country": "Germany"
+  },
+  {
+    "id": "iss_004",
+    "name": "Toyota Motor Corp.",
+    "industry": "Automotive",
+    "rating": "A1",
+    "outlook": "Stable",
+    "lastUpdated": "2026-01-31",
+    "country": "Japan"
+  },
+  {
+    "id": "iss_005",
+    "name": "Siemens AG",
+    "industry": "Industrial Manufacturing",
+    "rating": "A2",
+    "outlook": "Positive",
+    "lastUpdated": "2026-02-18",
+    "country": "Germany"
+  }
+]

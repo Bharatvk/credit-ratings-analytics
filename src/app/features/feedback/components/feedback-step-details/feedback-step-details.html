@@ -1,0 +1,80 @@
+<p-card>
+  <ng-template pTemplate="title">Step 3: Detailed Feedback</ng-template>
+  <form [formGroup]="group" class="details-grid">
+    <section>
+      <h3>Key drivers you agree with</h3>
+      <p-multiselect
+        formControlName="agreedDrivers"
+        [options]="agreedDriverOptions"
+        optionLabel="label"
+        optionValue="value"
+        optionDisabled="disabled"
+        [filter]="true"
+        appendTo="body"
+        display="chip"
+        placeholder="Select one or more key drivers"
+        (onChange)="onDriverSelectionChange('agreedDrivers')"
+      />
+      <p class="helper-text">Drivers selected in "Disagree" are disabled here.</p>
+    </section>
+
+    <section>
+      <h3>Key drivers you disagree with</h3>
+      <p-multiselect
+        formControlName="disagreedDrivers"
+        [options]="disagreedDriverOptions"
+        optionLabel="label"
+        optionValue="value"
+        optionDisabled="disabled"
+        [filter]="true"
+        appendTo="body"
+        display="chip"
+        placeholder="Select one or more key drivers"
+        (onChange)="onDriverSelectionChange('disagreedDrivers')"
+      />
+      <p class="helper-text">Drivers selected in "Agree" are disabled here.</p>
+    </section>
+
+    <label for="additionalFactors">Additional factors to consider (max 500)</label>
+    <textarea
+      id="additionalFactors"
+      pInputTextarea
+      rows="4"
+      formControlName="additionalFactors"
+      [maxlength]="additionalFactorsMax"
+      aria-describedby="additional-factors-counter"
+    ></textarea>
+    <p
+      id="additional-factors-counter"
+      class="char-counter"
+      [class.char-counter-near-limit]="isNearLimit('additionalFactors')"
+      aria-live="polite"
+    >
+      {{ remainingChars('additionalFactors') }} characters remaining
+    </p>
+    @if (group.get('additionalFactors')?.invalid && (group.get('additionalFactors')?.touched || group.get('additionalFactors')?.dirty)) {
+      <p-message severity="error" text="Maximum length is 500 characters." />
+    }
+
+    <label for="comments">General comments (max 1000)</label>
+    <textarea
+      id="comments"
+      pInputTextarea
+      rows="5"
+      formControlName="comments"
+      [maxlength]="commentsMax"
+      aria-describedby="comments-counter"
+    ></textarea>
+    <p
+      id="comments-counter"
+      class="char-counter"
+      [class.char-counter-near-limit]="isNearLimit('comments')"
+      aria-live="polite"
+    >
+      {{ remainingChars('comments') }} characters remaining
+    </p>
+    @if (group.get('comments')?.invalid && (group.get('comments')?.touched || group.get('comments')?.dirty)) {
+      <p-message severity="error" text="Maximum length is 1000 characters." />
+    }
+  </form>
+</p-card>

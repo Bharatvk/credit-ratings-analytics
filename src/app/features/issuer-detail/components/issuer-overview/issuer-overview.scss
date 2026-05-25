@@ -1,0 +1,104 @@
+.section-heading {
+  margin: 0 0 0.8rem;
+  font-size: 1.3rem;
+}
+
+.issuer-header {
+  margin-bottom: 1rem;
+}
+
+.issuer-header h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.issuer-meta {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metric {
+  border: 1px solid var(--surface-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: #fff;
+}
+
+.rating-metric {
+  background: #f3f7ff;
+  border-color: #d1ddf3;
+}
+
+.label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.rating-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+  background: #1f4686;
+}
+
+.rating-value {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.rating-caption {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #4b5f7f;
+}
+
+.outlook {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 0.25rem 0.6rem;
+}
+
+.outlook-positive {
+  color: #08612c;
+  background: #e9f9ef;
+}
+
+.outlook-stable {
+  color: #1e6c3c;
+  background: #eef8f1;
+}
+
+.outlook-negative {
+  color: #8c1d18;
+  background: #fdeeee;
+}
+
+@media (max-width: 768px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
