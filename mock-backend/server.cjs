@@ -1,11 +1,34 @@
 const http = require('node:http');
 const fs = require('node:fs/promises');
+const fsSync = require('node:fs');
 const path = require('node:path');
 
-const PORT = Number(process.env.MOCK_API_PORT || 3001);
+const PORT = Number(process.env.PORT || process.env.MOCK_API_PORT || 3001);
 const BASE_DIR = path.resolve(__dirname, '..');
 const ISSUERS_PATH = path.join(BASE_DIR, 'public', 'mock-api', 'issuers.json');
 const DETAILS_DIR = path.join(BASE_DIR, 'public', 'mock-api', 'details');
+const STATIC_DIR_CANDIDATES = [
+  path.join(BASE_DIR, 'dist', 'credits-ratings-analytics', 'browser'),
+  path.join(BASE_DIR, 'dist', 'credits-ratings-analytics'),
+];
+const STATIC_DIR = STATIC_DIR_CANDIDATES.find((dir) => fsSync.existsSync(path.join(dir, 'index.html'))) || null;
+
+const CONTENT_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.txt': 'text/plain; charset=utf-8',
+};
 
 function sendJson(response, status, body) {
   response.writeHead(status, {
@@ -22,6 +45,13 @@ function sendApiError(response, status, code, message) {
       message,
     },
   });
+}
+
+function sendBuffer(response, status, body, contentType) {
+  response.writeHead(status, {
+    'Content-Type': contentType,
+  });
+  response.end(body);
 }
 
 async function readJson(filePath) {
@@ -88,6 +118,56 @@ function shouldForceError(url) {
   return url.searchParams.get('mockError') === '1';
 }
 
+function hasFileExtension(pathname) {
+  return path.extname(pathname) !== '';
+}
+
+function resolveStaticPath(pathname) {
+  if (!STATIC_DIR) {
+    return null;
+  }
+
+  const normalized = decodeURIComponent(pathname.split('?')[0]).replace(/^\/+/, '');
+  const candidate = path.resolve(STATIC_DIR, normalized || 'index.html');
+  if (!candidate.startsWith(STATIC_DIR)) {
+    return null;
+  }
+  return candidate;
+}
+
+async function serveStatic(url, response) {
+  const pathname = url.pathname === '/' ? '/index.html' : url.pathname;
+  const resolvedPath = resolveStaticPath(pathname);
+  if (!resolvedPath) {
+    return false;
+  }
+
+  try {
+    const stat = await fs.stat(resolvedPath);
+    if (stat.isFile()) {
+      const extension = path.extname(resolvedPath).toLowerCase();
+      const contentType = CONTENT_TYPES[extension] || 'application/octet-stream';
+      const file = await fs.readFile(resolvedPath);
+      sendBuffer(response, 200, file, contentType);
+      return true;
+    }
+  } catch {
+    // Fall through to SPA fallback or 404.
+  }
+
+  if (!hasFileExtension(pathname)) {
+    try {
+      const indexFile = await fs.readFile(path.join(STATIC_DIR, 'index.html'));
+      sendBuffer(response, 200, indexFile, CONTENT_TYPES['.html']);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+}
+
 async function handler(request, response) {
   const url = new URL(request.url || '/', 'http://127.0.0.1');
   await sleep(randomDelay());
@@ -136,10 +216,22 @@ async function handler(request, response) {
     }
   }
 
+  if (request.method === 'GET') {
+    const served = await serveStatic(url, response);
+    if (served) {
+      return;
+    }
+  }
+
   return sendApiError(response, 404, 'NOT_FOUND', 'Endpoint not found.');
 }
 
 const server = http.createServer(handler);
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`[mock-api] listening on http://127.0.0.1:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`[mock-api] listening on http://0.0.0.0:${PORT}`);
+  if (!STATIC_DIR) {
+    console.log('[mock-api] static build not found; only /api/* endpoints are currently available.');
+  } else {
+    console.log(`[mock-api] serving static build from ${STATIC_DIR}`);
+  }
 });

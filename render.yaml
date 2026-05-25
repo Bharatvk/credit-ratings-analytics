@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: credit-ratings-analytics-temp
+    env: node
+    plan: free
+    region: oregon
+    branch: deploy/render-temp
+    buildCommand: npm ci && npm run build:prod
+    startCommand: npm run start:prod
+    healthCheckPath: /dashboard
