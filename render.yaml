@@ -5,6 +5,6 @@ services:
     plan: free
     region: oregon
     branch: deploy/render-temp
-    buildCommand: npm ci && npm run build:prod
+    buildCommand: npm ci && npm run build -- --configuration development
     startCommand: npm run start:prod
     healthCheckPath: /dashboard
