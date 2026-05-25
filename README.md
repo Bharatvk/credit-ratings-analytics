@@ -119,19 +119,3 @@ npx ngc -p tsconfig.app.json
 ```bash
 npm run start:web -- --port 4300
 ```
-
-## 12) Publish This Repository Publicly (GitHub)
-
-Inside this project folder:
-
-```bash
-git --git-dir=.git --work-tree=. add .
-git --git-dir=.git --work-tree=. commit -m "Initial commit: Credit Ratings Analytics case study"
-git --git-dir=.git --work-tree=. branch -M main
-git --git-dir=.git --work-tree=. remote add origin <your-github-repo-url>
-git --git-dir=.git --work-tree=. push -u origin main
-```
-
-After push, share:
-
-`https://github.com/<username>/<repo-name>`
