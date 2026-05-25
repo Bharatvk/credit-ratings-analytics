@@ -1,0 +1,62 @@
+{
+  "issuer": {
+    "id": "iss_003",
+    "name": "Deutsche Bank AG",
+    "industry": "Financial Services",
+    "rating": "A3",
+    "outlook": "Negative",
+    "lastUpdated": "2026-02-20",
+    "country": "Germany"
+  },
+  "history": [
+    {
+      "date": "2024-02-19",
+      "rating": "A2",
+      "action": "Downgrade",
+      "rationale": "Weak earnings consistency amid elevated funding costs."
+    },
+    {
+      "date": "2025-02-21",
+      "rating": "A3",
+      "action": "Downgrade",
+      "rationale": "Pressure from macro uncertainty and risk costs."
+    },
+    {
+      "date": "2026-02-20",
+      "rating": "A3",
+      "action": "Affirmed",
+      "rationale": "Capital buffers remain adequate despite outlook pressure."
+    }
+  ],
+  "drivers": [
+    {
+      "id": "drv_21",
+      "category": "Financial",
+      "title": "Capital Adequacy Buffer",
+      "impact": "Neutral",
+      "score": 6.6,
+      "description": "Capital metrics remain above internal thresholds but are less resilient than peers."
+    },
+    {
+      "id": "drv_22",
+      "category": "Market",
+      "title": "Economic Exposure",
+      "impact": "Negative",
+      "score": 5.1,
+      "description": "Regional macro softness may affect credit quality and fee income."
+    },
+    {
+      "id": "drv_23",
+      "category": "Governance",
+      "title": "Risk Governance Framework",
+      "impact": "Positive",
+      "score": 7.0,
+      "description": "Governance controls have improved model risk and portfolio oversight."
+    }
+  ],
+  "aiInsight": {
+    "summary": "The rating reflects balanced capital and funding fundamentals against a weaker macro backdrop. Negative outlook captures sensitivity to sustained earnings pressure and asset-quality trends.",
+    "confidence": 78,
+    "generatedAt": "2026-02-20T12:00:00Z"
+  }
+}

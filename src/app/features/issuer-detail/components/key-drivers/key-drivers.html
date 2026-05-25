@@ -1,0 +1,19 @@
+<p-card>
+  <h2 class="section-heading">Key Drivers</h2>
+  <div class="driver-list">
+    @for (driver of drivers; track driver.id) {
+      <article class="driver-card">
+        <div class="driver-header">
+          <p-tag [value]="driver.category" severity="info" />
+          <p-tag [value]="driver.impact" [severity]="impactSeverity(driver.impact)" />
+        </div>
+        <h3>{{ driver.title }}</h3>
+        <div class="score-row">
+          <strong>Score: {{ driver.score }}/10</strong>
+          <p-progressBar [value]="driver.score * 10" [showValue]="false" />
+        </div>
+        <p class="description">{{ driver.description }}</p>
+      </article>
+    }
+  </div>
+</p-card>

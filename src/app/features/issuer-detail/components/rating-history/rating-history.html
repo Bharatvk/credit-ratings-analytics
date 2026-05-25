@@ -1,0 +1,21 @@
+<p-card>
+  <ng-template pTemplate="title">Rating History</ng-template>
+  <p-table [value]="history" [tableStyle]="{ 'min-width': '40rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Date</th>
+        <th>Rating</th>
+        <th>Action</th>
+        <th>Rationale</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.date | date: 'MM/dd/yyyy' }}</td>
+        <td>{{ item.rating }}</td>
+        <td><p-tag [value]="item.action" [severity]="severity(item.action)" /></td>
+        <td>{{ item.rationale }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

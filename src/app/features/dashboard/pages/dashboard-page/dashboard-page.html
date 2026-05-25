@@ -1,0 +1,42 @@
+<section class="dashboard-page">
+  <header class="page-header">
+    <div>
+      <h1>Credit Ratings Dashboard</h1>
+      <p>Search, sort, and review issuer ratings.</p>
+    </div>
+  </header>
+
+  <section class="filter-row">
+    <label class="filter-input">
+      <span class="sr-only">Search by issuer name or industry</span>
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="applyFilter()"
+        placeholder="Search by issuer name or industry"
+      />
+    </label>
+    <button
+      pButton
+      type="button"
+      label="Clear"
+      icon="pi pi-times"
+      severity="secondary"
+      (click)="clearSearch()"
+    ></button>
+  </section>
+
+  @if (loading) {
+    <app-loading-state label="Loading issuer list..." />
+  } @else if (errorMessage) {
+    <app-error-state [message]="errorMessage" (retry)="loadIssuers()" />
+  } @else if (filteredIssuers.length === 0) {
+    <app-empty-state
+      title="No matching issuers"
+      message="No issuer matched the current filter. Try a different search."
+    />
+  } @else {
+    <app-issuer-table [issuers]="filteredIssuers" (openIssuer)="openIssuer($event)" />
+  }
+</section>

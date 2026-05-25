@@ -1,0 +1,21 @@
+.state-container {
+  border: 1px dashed var(--surface-border);
+  border-radius: 12px;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--surface-ground);
+}
+
+.empty-icon {
+  font-size: 1.75rem;
+  color: var(--primary-color);
+}
+
+h3 {
+  margin: 0.75rem 0 0.5rem;
+}
+
+p {
+  margin: 0;
+  color: var(--text-muted);
+}

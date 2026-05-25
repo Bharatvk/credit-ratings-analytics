@@ -1,0 +1,33 @@
+<p-card>
+  <ng-template pTemplate="title">Step 2: Rating Feedback</ng-template>
+  <p class="required-note"><span class="required-asterisk" aria-hidden="true">*</span> Required fields</p>
+  <form [formGroup]="group" class="rating-grid">
+    <label for="accuracy" appRequiredAsterisk>Rating Accuracy</label>
+    <p class="rating-help">How accurate is the assigned rating?</p>
+    <p-rating inputId="accuracy" formControlName="accuracy" [stars]="5" />
+    @if (hasError('accuracy')) {
+      <p-message severity="error" text="Rating accuracy is required." />
+    }
+
+    <label for="driverRelevance" appRequiredAsterisk>Driver Relevance</label>
+    <p class="rating-help">How relevant are the identified key drivers?</p>
+    <p-rating inputId="driverRelevance" formControlName="driverRelevance" [stars]="5" />
+    @if (hasError('driverRelevance')) {
+      <p-message severity="error" text="Driver relevance is required." />
+    }
+
+    <label for="aiInsightQuality" appRequiredAsterisk>AI Insight Quality</label>
+    <p class="rating-help">How useful is the AI-generated analysis?</p>
+    <p-rating inputId="aiInsightQuality" formControlName="aiInsightQuality" [stars]="5" />
+    @if (hasError('aiInsightQuality')) {
+      <p-message severity="error" text="AI insight quality is required." />
+    }
+
+    <label for="timeliness" appRequiredAsterisk>Timeliness</label>
+    <p class="rating-help">How current is the rating analysis?</p>
+    <p-rating inputId="timeliness" formControlName="timeliness" [stars]="5" />
+    @if (hasError('timeliness')) {
+      <p-message severity="error" text="Timeliness is required." />
+    }
+  </form>
+</p-card>

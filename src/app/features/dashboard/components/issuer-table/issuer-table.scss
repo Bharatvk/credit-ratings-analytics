@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+.link-button {
+  background: transparent;
+  border: 0;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.link-button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.outlook-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.outlook-positive {
+  color: #0f6f43;
+}
+
+.outlook-stable {
+  color: #1f3b63;
+}
+
+.outlook-negative {
+  color: #8c1d18;
+}

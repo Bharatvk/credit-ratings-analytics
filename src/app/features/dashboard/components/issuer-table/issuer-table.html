@@ -1,0 +1,56 @@
+<p-table
+  [value]="issuers"
+  [customSort]="true"
+  (sortFunction)="sort($event)"
+  dataKey="id"
+  [rowHover]="true"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  styleClass="p-datatable-striped"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">Issuer Name <p-sortIcon field="name" /></th>
+      <th pSortableColumn="industry">Industry <p-sortIcon field="industry" /></th>
+      <th pSortableColumn="rating">Rating <p-sortIcon field="rating" /></th>
+      <th pSortableColumn="outlook">Outlook <p-sortIcon field="outlook" /></th>
+      <th pSortableColumn="lastUpdated">Last Updated <p-sortIcon field="lastUpdated" /></th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-issuer>
+    <tr>
+      <td>
+        <button
+          type="button"
+          class="link-button"
+          (click)="openIssuer.emit(issuer.id)"
+          [attr.aria-label]="'View details for ' + issuer.name"
+        >
+          {{ issuer.name }}
+        </button>
+      </td>
+      <td>{{ issuer.industry }}</td>
+      <td>
+        <p-tag [value]="issuer.rating" severity="info" />
+      </td>
+      <td>
+        <span class="outlook-chip" [ngClass]="outlookClass(issuer.outlook)">
+          <i class="pi" [ngClass]="issuer.outlook === 'Negative' ? 'pi-arrow-down' : issuer.outlook === 'Positive' ? 'pi-arrow-up' : 'pi-minus'"></i>
+          {{ issuer.outlook }}
+        </span>
+      </td>
+      <td>{{ issuer.lastUpdated | date: 'MM/dd/yyyy' }}</td>
+      <td>
+        <button
+          pButton
+          type="button"
+          label="View Details"
+          icon="pi pi-external-link"
+          (click)="openIssuer.emit(issuer.id)"
+          [attr.aria-label]="'View details for ' + issuer.name"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
