@@ -16,7 +16,7 @@ function findStaticDir() {
   ];
 
   for (const dir of candidates) {
-    if (fsSync.existsSync(path.join(dir, 'index.html'))) {
+    if (fsSync.existsSync(path.join(dir, 'index.html')) || fsSync.existsSync(path.join(dir, 'index.csr.html'))) {
       return dir;
     }
   }
@@ -33,7 +33,7 @@ function findStaticDir() {
       continue;
     }
 
-    if (fsSync.existsSync(path.join(current, 'index.html'))) {
+    if (fsSync.existsSync(path.join(current, 'index.html')) || fsSync.existsSync(path.join(current, 'index.csr.html'))) {
       return current;
     }
 
@@ -49,6 +49,21 @@ function findStaticDir() {
 }
 
 const STATIC_DIR = findStaticDir();
+
+function staticIndexPath() {
+  if (!STATIC_DIR) {
+    return null;
+  }
+  const html = path.join(STATIC_DIR, 'index.html');
+  if (fsSync.existsSync(html)) {
+    return html;
+  }
+  const csr = path.join(STATIC_DIR, 'index.csr.html');
+  if (fsSync.existsSync(csr)) {
+    return csr;
+  }
+  return null;
+}
 
 const CONTENT_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -194,7 +209,11 @@ async function serveStatic(url, response) {
 
   if (!hasFileExtension(pathname)) {
     try {
-      const indexFile = await fs.readFile(path.join(STATIC_DIR, 'index.html'));
+      const indexPath = staticIndexPath();
+      if (!indexPath) {
+        return false;
+      }
+      const indexFile = await fs.readFile(indexPath);
       sendBuffer(response, 200, indexFile, CONTENT_TYPES['.html']);
       return true;
     } catch {
