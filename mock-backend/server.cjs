@@ -7,11 +7,48 @@ const PORT = Number(process.env.PORT || process.env.MOCK_API_PORT || 3001);
 const BASE_DIR = path.resolve(__dirname, '..');
 const ISSUERS_PATH = path.join(BASE_DIR, 'public', 'mock-api', 'issuers.json');
 const DETAILS_DIR = path.join(BASE_DIR, 'public', 'mock-api', 'details');
-const STATIC_DIR_CANDIDATES = [
-  path.join(BASE_DIR, 'dist', 'credits-ratings-analytics', 'browser'),
-  path.join(BASE_DIR, 'dist', 'credits-ratings-analytics'),
-];
-const STATIC_DIR = STATIC_DIR_CANDIDATES.find((dir) => fsSync.existsSync(path.join(dir, 'index.html'))) || null;
+
+function findStaticDir() {
+  const candidates = [
+    path.join(BASE_DIR, 'dist', 'credits-ratings-analytics', 'browser'),
+    path.join(BASE_DIR, 'dist', 'credits-ratings-analytics'),
+    path.join(BASE_DIR, 'dist'),
+  ];
+
+  for (const dir of candidates) {
+    if (fsSync.existsSync(path.join(dir, 'index.html'))) {
+      return dir;
+    }
+  }
+
+  const distRoot = path.join(BASE_DIR, 'dist');
+  if (!fsSync.existsSync(distRoot)) {
+    return null;
+  }
+
+  const queue = [distRoot];
+  while (queue.length) {
+    const current = queue.shift();
+    if (!current) {
+      continue;
+    }
+
+    if (fsSync.existsSync(path.join(current, 'index.html'))) {
+      return current;
+    }
+
+    const entries = fsSync.readdirSync(current, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        queue.push(path.join(current, entry.name));
+      }
+    }
+  }
+
+  return null;
+}
+
+const STATIC_DIR = findStaticDir();
 
 const CONTENT_TYPES = {
   '.html': 'text/html; charset=utf-8',
